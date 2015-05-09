@@ -3,7 +3,7 @@ library(dplyr)
 library(plyr)
 library(lubridate)
 
-## Creates character classes to be read in by the read.csv command they are all character because
+## Creates character classes to be read in by the read.csv command. They are all character because
 ## its the easiest way to get R to correctly identify them later... numeric didn't work.
 
 clss <- c("character","character", "character", "character", "character", "character", 
@@ -31,6 +31,8 @@ power_names <- c("Date", "Time", "Global_active_power", "Global_reactive_power",
           power$Sub_metering_1 <- as.numeric(power$Sub_metering_1)
           power$Sub_metering_2 <- as.numeric(power$Sub_metering_2)
           power$Sub_metering_3 <- as.numeric(power$Sub_metering_3)
+
+## Creates a new column called cdate that is a combo of the data and time
           pwr <- mutate(power, cdate = as.POSIXct(paste(power$Date, power$Time), format="%Y-%m-%d %H:%M:%S"))
                pwr$cdate[1:24]
                pwr$cdate[2857:2880]
